@@ -1,0 +1,51 @@
+<mat-card class="film-card">
+  <mat-card-header>
+    <div mat-card-avatar class="image-container">
+      <img [src]="movie?.imageUrl" />
+    </div>
+    <mat-card-title>
+      <a class="movie-link" (click)="showDetails()">
+        {{ movie?.title }} {{ movie?.releaseYearInfo }}
+      </a>
+      <ng-container *ngIf="movie?.rating">
+        - <mat-icon class="rating">star</mat-icon> {{ movie?.rating }}
+      </ng-container>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <ng-container *ngIf="movie?.runtime">{{ movie?.runtime }} minutes | </ng-container> {{ movie?.genres }}
+    </mat-card-subtitle>
+    <mat-card-subtitle>{{ movie?.shortDescription }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="movie-card-content">
+    <mat-divider *ngIf="isDetailsLoading || movie?.wikipediaInfo" class="content-divider"></mat-divider>
+    <div *ngIf="isDetailsLoading" class="loading-spinner">
+      <mat-spinner color="primary" [diameter]="30"></mat-spinner>
+      <div class="search-loading-text">
+        <div class="mat-h3">Loading information ...</div>
+      </div>
+    </div>
+    <div *ngIf="!isDetailsLoading && movie?.wikipediaInfo" class="details-content">
+      <div class="wiki-poster-container">
+        <img [src]="movie?.wikipediaInfo.moviePosterUrl" />
+      </div>
+      <div class="wiki-content-container">
+        <h2 mat-h2>Wikipedia info</h2>
+        <div>
+          <p>
+            {{ movie?.wikipediaInfo.mainParagraph }}
+          </p>
+          <div class="card-button-row">
+            <a mat-raised-button color="primary" [href]="movie?.imdbLink" target="_blank"
+              matTooltip="Open IMDb page">IMDb</a>
+            <a mat-raised-button color="primary" [href]="movie?.wikipediaInfo.wikipediaLink" target="_blank"
+              matTooltip="Open Wikipedia page">Wikipedia</a>
+            <button mat-raised-button color="primary" matTooltip="Show related movies"
+              (click)="loadRelatedMovies()">Related movies</button>
+          </div>
+        </div>
+        <button mat-stroked-button matTooltip="Close movie details" matTooltipPosition="left" class="close-button"
+          (click)="closeDetails()">Close</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

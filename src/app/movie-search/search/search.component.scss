@@ -1,0 +1,37 @@
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar-left {
+  padding-right: 1rem;
+}
+
+.search-form {
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-full-width {
+  width: 100%;
+}
+
+.search-icon {
+  vertical-align: middle;
+  padding-bottom: 10px;
+}
+
+.loading-spinner {
+  display: grid;
+  height: 80%;
+  align-content: center;
+
+  > mat-spinner {
+    margin: 0 auto;
+  }
+}
+
+.search-loading-text {
+  text-align: center;
+  padding-top: 25px;
+}

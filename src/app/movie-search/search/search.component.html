@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>Movie Database</div>
+  <div class="navbar-left">
+    <!-- Movie search form -->
+    <form [formGroup]="searchForm" class="search-form" (submit)="searchMovies()" >
+      <mat-form-field class="search-full-width" floatLabel="never">
+        <mat-label>Movie title</mat-label>
+        <input matInput name="title" formControlName="title">
+        <mat-icon matSuffix aria-label="Example home icon" class="search-icon">search</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+</mat-toolbar>
+
+<!-- Loading spinner -->
+<div *ngIf="isLoading" class="loading-spinner">
+  <mat-spinner color="primary"></mat-spinner>
+  <div>
+    <h2 class="mat-h2 search-loading-text">Loading search results ...</h2>
+  </div>
+</div>
+
+<!-- Search results -->
+<ng-container *ngIf="!isLoading && movieList">
+  <div *ngFor="let film of movieList">
+    <mdb-movie-card
+    [movie]=film
+    (changeMovieList)="loadMovies($event)"
+    ></mdb-movie-card>
+  </div>
+</ng-container>

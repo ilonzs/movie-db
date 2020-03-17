@@ -1,0 +1,16 @@
+{
+  "/imdb-api/*": {
+    "target": "https://www.imdb.com",
+    "pathRewrite": { "^/imdb-api": "" },
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/wiki-api/*": {
+    "target": "https://en.wikipedia.org",
+    "pathRewrite": { "^/wiki-api": "" },
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
